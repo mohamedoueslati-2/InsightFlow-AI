@@ -1,0 +1,105 @@
+name: insightflow
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: insightflow-api:latest
+    environment:
+      INSIGHTFLOW_SETTINGS_FILE: /app/config/insightflow.env
+      INSIGHTFLOW_ALLOWED_ORIGINS: ${INSIGHTFLOW_ALLOWED_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
+      CLEANING_SANDBOX_BACKEND: docker
+      CLEANING_SANDBOX_IMAGE: cleaning-sandbox:1
+      CLEANING_SANDBOX_MEMORY_MB: ${CLEANING_SANDBOX_MEMORY_MB:-512}
+      CLEANING_SANDBOX_CPU_LIMIT: ${CLEANING_SANDBOX_CPU_LIMIT:-1}
+    ports:
+      - "${API_PORT:-8000}:8000"
+    volumes:
+      - insightflow_storage:/app/storage
+      - insightflow_report_storage:/app/backend/storage
+      - insightflow_settings:/app/config
+      # Required only because generated cleaning is executed in the existing isolated Docker sandbox.
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      cleaning-sandbox:
+        condition: service_started
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=256m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/gemini', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: insightflow-frontend:latest
+    environment:
+      API_BASE_URL: ${API_BASE_URL:-http://localhost:8000}
+      DATA_FORMULATOR_URL: ${DATA_FORMULATOR_URL:-http://localhost:5567}
+      PRESENTON_URL: ${PRESENTON_URL:-http://localhost:5001}
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Keeps the sandbox image built and available locally. Actual cleaning runs use
+  # short-lived, separately locked-down containers created by the API.
+  cleaning-sandbox:
+    build:
+      context: ./backend/services/cleaning/executors
+      dockerfile: Dockerfile
+    image: cleaning-sandbox:1
+    entrypoint: ["/bin/sh", "-c", "tail -f /dev/null"]
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  data-formulator:
+    image: ghcr.io/mohamedoueslati-2/data-formulator:latest
+    ports:
+      - "${DATA_FORMULATOR_PORT:-5567}:5567"
+    volumes:
+      - data_formulator_home:/home/appuser/.data_formulator
+    restart: unless-stopped
+
+  presenton:
+    image: ghcr.io/presenton/presenton:latest
+    ports:
+      - "${PRESENTON_PORT:-5001}:80"
+      # Required by Presenton's "Sign in with ChatGPT / Codex" callback flow.
+      - "${PRESENTON_CODEX_AUTH_PORT:-1455}:1455"
+    volumes:
+      - presenton_data:/app_data
+    restart: unless-stopped
+
+volumes:
+  insightflow_storage:
+  insightflow_report_storage:
+  insightflow_settings:
+  data_formulator_home:
+  presenton_data:

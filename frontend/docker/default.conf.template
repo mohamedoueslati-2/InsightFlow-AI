@@ -1,0 +1,17 @@
+server {
+    listen 80;
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # The browser needs public URLs, while service names are internal to Compose.
+    location = /runtime-config.js {
+        default_type application/javascript;
+        add_header Cache-Control "no-store, no-cache, must-revalidate" always;
+        return 200 "window.API_BASE_URL = '${API_BASE_URL}';\nwindow.DATA_FORMULATOR_URL = '${DATA_FORMULATOR_URL}';\nwindow.PRESENTON_URL = '${PRESENTON_URL}';\n";
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}

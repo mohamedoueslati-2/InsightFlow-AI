@@ -1,0 +1,27 @@
+{
+	# Caddy obtains and renews TLS certificates automatically. Set CADDY_EMAIL
+	# in the production environment so certificate notices have an owner.
+	email {$CADDY_EMAIL}
+}
+
+# Each browser-facing service has its own HTTPS origin. Do not proxy Presenton
+# under a path such as /presenton: its Next.js client uses root-relative routes.
+{$APP_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy frontend:80
+}
+
+{$API_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy api:8000
+}
+
+{$DATA_FORMULATOR_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy data-formulator:5567
+}
+
+{$PRESENTON_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy presenton:80
+}

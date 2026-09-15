@@ -1,0 +1,47 @@
+# Virtual Environment
+venv/
+.venv/
+*_venv/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Environment variables
+.env
+.env.production
+production.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Local datasets and generated execution audit (may contain user data).
+storage/
+backend/storage/
+presenton_data/
+
+# React/Vite frontend
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+
+# Test, build and runtime artifacts
+.pytest_cache/
+.pytest-tmp/
+.coverage
+coverage/
+htmlcov/
+*.log

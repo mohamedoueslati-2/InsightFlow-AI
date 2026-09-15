@@ -1,0 +1,268 @@
+<div class="app-shell">
+    <aside class="service-sidebar" aria-label="Services InsightFlow">
+        <div class="sidebar-brand">
+            <span class="brand-mark">IF</span>
+            <div class="brand-copy"><strong>InsightFlow AI</strong><small>Votre espace d’intelligence</small></div>
+        </div>
+        <nav class="service-nav">
+            <span class="nav-section-label">Espace de travail</span>
+            <button class="service-nav-item active" data-service="overview" title="Vue d’ensemble"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></span><div><strong>Vue d’ensemble</strong><small>Centre de contrôle</small></div></button>
+            <span class="nav-section-label">Qualité des données</span>
+            <button class="service-nav-item" data-service="validation" title="Validation"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><strong>Validation</strong><small>Contrôler un fichier</small></div></button>
+            <button class="service-nav-item" data-service="profiling" title="Profilage"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 16 4-5 4 3 5-7"/><path d="M18 7h2v2"/></svg></span><div><strong>Profilage</strong><small>Analyser les données</small></div></button>
+            <button class="service-nav-item" data-service="cleaning" title="Nettoyage"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.1L5 10l5.1 1.9L12 17l1.9-5.1L19 10l-5.1-1.9L12 3Z"/><path d="m5 3-.7 1.8L2.5 5.5l1.8.7L5 8l.7-1.8 1.8-.7-1.8-.7L5 3Z"/><path d="m19 16-1 2.5-2.5 1 2.5 1 1 2.5 1-2.5 2.5-1-2.5-1-1-2.5Z"/></svg></span><div><strong>Nettoyage IA</strong><small>Révision humaine incluse</small></div></button>
+            <button class="service-nav-item" data-service="reports" title="Word vers Slides"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h6"/></svg></span><div><strong>Word → Slides</strong><small>Créer une présentation</small></div></button>
+            <span class="nav-section-label">Outils connectés</span>
+            <button class="service-nav-item" data-service="data-formulator" title="Data Formulator"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3 1.7 0 3.2-.2 4.5-.6"/><path d="M19 16v6M16 19h6"/></svg></span><div><strong>Data Formulator</strong><small>Docker · Data exploration</small></div></button>
+            <button class="service-nav-item" data-service="presenton" title="Presenton AI"><span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h20"/><path d="M3 3v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3"/><path d="m8 21 4-3 4 3"/><path d="M8 10h2M12 10h4M8 14h8"/></svg></span><div><strong>Presenton AI</strong><small>Docker · PPTX / PDF</small></div></button>
+        </nav>
+        <div class="sidebar-footer">
+            <span class="status-dot"></span><span class="sidebar-footer-text">Espace local connecté</span>
+        </div>
+    </aside>
+
+    <main class="workspace">
+        <header class="workspace-header">
+            <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="Réduire la barre latérale" aria-expanded="true" title="Réduire la barre latérale">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18M15 9l-3 3 3 3"/></svg>
+            </button>
+            <div>
+                <span class="eyebrow">INSIGHTFLOW AI</span>
+                <h1 id="workspaceTitle">Service Dashboard</h1>
+                <p id="workspaceSubtitle">Validation, profiling, cleaning and report-to-presentation services in one workspace.</p>
+            </div>
+            <div class="runtime-badges">
+                <span id="apiStatus" class="runtime-badge">API · checking</span>
+                <span id="geminiStatus" class="runtime-badge">Gemini · checking</span>
+                <button id="geminiSettingsButton" class="header-config-button" type="button" aria-haspopup="dialog" title="Workspace configuration">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.12 2.12-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.04 1.56V20.3h-3v-.08A1.7 1.7 0 0 0 10.66 18.66a1.7 1.7 0 0 0-1.88.34l-.06.06-2.12-2.12.06-.06A1.7 1.7 0 0 0 7 15a1.7 1.7 0 0 0-1.56-1.04h-.08v-3h.08A1.7 1.7 0 0 0 7 9.92a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.12-2.12.06.06a1.7 1.7 0 0 0 1.88.34A1.7 1.7 0 0 0 11.7 4.7v-.08h3v.08a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.12 2.12-.06.06A1.7 1.7 0 0 0 19.4 9.92a1.7 1.7 0 0 0 1.56 1.04h.08v3h-.08A1.7 1.7 0 0 0 19.4 15Z"/></svg>
+                    <span>Settings</span>
+                </button>
+            </div>
+        </header>
+        <div id="message" class="message-container global-message" role="status" aria-live="polite"></div>
+
+        <section id="overviewDashboard" class="service-view active" data-view="overview">
+            <div class="overview-page-heading">
+                <div><h2>Votre espace de travail</h2><p>Pilotez la qualité des données et la création de présentations depuis un seul endroit.</p></div>
+            </div>
+            <div class="hero-panel">
+                <div>
+                    <span class="eyebrow">VUE D’ENSEMBLE</span>
+                    <h2>De vos sources à des décisions fiables.</h2>
+                    <p>Validez, analysez et améliorez vos données. Transformez ensuite vos rapports Word en présentations prêtes à partager.</p>
+                </div>
+                <div class="hero-flow" aria-label="Architecture summary">
+                    <div class="flow-row"><span>Dataset</span><b>→</b><span>Validate</span><b>→</b><span>Profile</span><b>→</b><span>Clean</span><b>→</b><span class="external-step">Data Formulator</span></div>
+                    <div class="flow-row"><span>Word report</span><b>→</b><span>Extract</span><b>→</b><span>Plan slides</span><b>→</b><span>ZIP</span><b>→</b><span class="external-step">Presenton AI</span></div>
+                </div>
+            </div>
+            <div class="service-card-grid">
+                <button class="service-card" data-open-service="validation">
+                    <span class="service-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><small>01 · DONNÉES</small><h3>Valider un fichier</h3><p>Vérifiez le format, la structure et la lisibilité avant toute analyse.</p></div><strong id="validationCount">— datasets</strong>
+                </button>
+                <button class="service-card" data-open-service="profiling">
+                    <span class="service-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 16 4-5 4 3 5-7"/><path d="M18 7h2v2"/></svg></span><div><small>02 · IA</small><h3>Profiler vos données</h3><p>Comprenez rapidement la structure, la qualité et les anomalies du dataset.</p></div><strong id="profilingCount">— profiles</strong>
+                </button>
+                <button class="service-card" data-open-service="cleaning">
+                    <span class="service-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.1L5 10l5.1 1.9L12 17l1.9-5.1L19 10l-5.1-1.9L12 3Z"/><path d="m5 3-.7 1.8L2.5 5.5l1.8.7L5 8l.7-1.8 1.8-.7-1.8-.7L5 3Z"/><path d="m19 16-1 2.5-2.5 1 2.5 1 1 2.5 1-2.5 2.5-1-2.5-1-1-2.5Z"/></svg></span><div><small>03 · AI + REVIEW</small><h3>Data Cleaning</h3><p>Generate, validate and review cleaning proposals without changing the existing safety pipeline.</p></div><strong id="cleaningCount">— reports</strong>
+                </button>
+                <button class="service-card" data-open-service="reports">
+                    <span class="service-icon word-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h6"/></svg></span><div><small>04 · DOCUMENT</small><h3>Word → Presentation</h3><p>Extract DOCX content and visuals, refine an interactive presentation plan and download the handoff ZIP.</p></div><strong id="reportCount">— jobs</strong>
+                </button>
+                <button class="service-card" data-open-service="data-formulator">
+                    <span class="service-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3 1.7 0 3.2-.2 4.5-.6"/><path d="M19 16v6M16 19h6"/></svg></span><div><small>05 · EXTERNAL TOOL</small><h3>Data Formulator</h3><p>Open your independent Docker Data Formulator inside the InsightFlow workspace.</p></div><strong>Docker · 5567</strong>
+                </button>
+                <button class="service-card" data-open-service="presenton">
+                    <span class="service-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h20"/><path d="M3 3v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3"/><path d="m8 21 4-3 4 3"/><path d="M8 10h2M12 10h4M8 14h8"/></svg></span><div><small>06 · EXTERNAL TOOL</small><h3>Presenton AI</h3><p>Open Presenton inside InsightFlow to turn the final handoff into editable PPTX/PDF presentations.</p></div><strong>Docker · 5001</strong>
+                </button>
+            </div>
+            <section class="architecture-panel">
+                <div class="section-header"><div><span class="eyebrow">ARCHITECTURE</span><h2>Services stay isolated, API stays unified</h2></div></div>
+                <div class="architecture-grid">
+                    <article><strong>Dataset services</strong><code>services/validation</code><code>services/profiling</code><code>services/cleaning</code><p>Existing logic preserved.</p></article>
+                    <article><strong>Report service</strong><code>services/report_presentation</code><p>Original DOCX extractor + Presentation Agent moved as one isolated package.</p></article>
+                    <article><strong>Shared API</strong><code>backend/main.py</code><p>One FastAPI app mounts both domains and keeps previous endpoint contracts.</p></article>
+                    <article><strong>Unified frontend</strong><code>frontend/</code><p>Dedicated service dashboards with one local runtime configuration.</p></article>
+                </div>
+            </section>
+        </section>
+
+        <section id="validationDashboard" class="service-view" data-view="validation" hidden>
+            <div class="service-heading">
+                <div><span class="eyebrow">ÉTAPE 01</span><h2>Valider votre fichier</h2><p>Vérifiez sa structure avant de lancer l’analyse. Vos données sources restent intactes.</p></div>
+                <span class="service-state">Deterministic</span>
+            </div>
+            <nav class="workflow-steps" aria-label="Parcours dataset">
+                <div data-step="validation" aria-current="step"><span>01</span><strong>Validation</strong><small>Vérifier le fichier</small></div>
+                <div data-step="profiling"><span>02</span><strong>Profilage</strong><small>Comprendre les données</small></div>
+                <div data-step="cleaning"><span>03</span><strong>Nettoyage</strong><small>Comparer les solutions</small></div>
+                <div data-step="decisions"><span>04</span><strong>Décisions</strong><small>Appliquer et vérifier</small></div>
+            </nav>
+            <section class="upload-section">
+                <div class="upload-intro"><span class="eyebrow">COMMENCER ICI</span><h2>Validez votre fichier</h2><p>Nous vérifions sa structure avant toute analyse. Vos données originales sont conservées.</p></div>
+                <div class="form-group">
+                    <label for="fileInput" class="file-label"><span class="file-label-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>Sélectionner un fichier</span><input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.json"></label>
+                    <div id="selectedFileName" class="selected-file-name">Aucun fichier choisi</div>
+                </div>
+                <button id="uploadButton" class="btn-primary">Valider et importer →</button>
+                <p class="upload-help">CSV · Excel · JSON — encodage, structure et lisibilité vérifiés sans appel à l’IA.</p>
+            </section>
+            <section id="validationResult" aria-live="polite"></section>
+            <section class="stored-files-section">
+                <div class="section-header"><h2>Vos datasets</h2><button id="refreshFilesButton" class="btn-secondary" title="Actualiser la liste"><svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0 2 5.5"/><path d="M20 4v7h-7"/></svg>Actualiser</button></div>
+                <div id="filesListContainer" class="table-wrapper"><p class="subtitle">Chargement des fichiers...</p></div>
+            </section>
+            <div id="fileInfo" class="file-info-container"></div>
+            <div id="result" class="result-container"></div>
+        </section>
+
+        <section id="profilingDashboard" class="service-view" data-view="profiling" hidden>
+            <div class="service-heading">
+                <div><span class="eyebrow">ÉTAPE 02</span><h2>Comprendre vos données</h2><p>Obtenez un profil clair de la structure, de la qualité et des points d’attention.</p></div>
+                <span class="service-state ai-state">Google ADK</span>
+            </div>
+            <section class="service-control-panel">
+                <div><h3>Choisir un dataset</h3><p>Generate a profile or reopen an existing report.</p></div>
+                <div id="profilingDatasetList" class="dataset-action-list"><span class="muted">Loading datasets…</span></div>
+            </section>
+            <div id="profileResult" class="profile-container"></div>
+        </section>
+
+        <section id="cleaningDashboard" class="service-view" data-view="cleaning" hidden>
+            <div class="service-heading">
+                <div><span class="eyebrow">ÉTAPE 03</span><h2>Nettoyage IA avec révision humaine</h2><p>Explorez chaque correction, comparez les options et gardez le dernier mot.</p></div>
+                <span class="service-state ai-state">Human-in-the-loop</span>
+            </div>
+            <section class="service-control-panel cleaning-controls">
+                <div><h3>Choisir un dataset</h3><p>Run the existing cleaning agent or reopen the last cleaning report.</p></div>
+                <label class="cleaning-mode">Application des corrections
+                    <select id="cleaningApprovalMode">
+                        <option value="auto_safe">Automatique si le risque est faible</option>
+                        <option value="review_all">Vérifier chaque correction</option>
+                        <option value="full_auto">Appliquer toutes les corrections validées</option>
+                    </select>
+                </label>
+                <div id="cleaningDatasetList" class="dataset-action-list wide"><span class="muted">Loading datasets…</span></div>
+            </section>
+            <div id="cleaningResult" class="cleaning-container"></div>
+        </section>
+
+        <section id="reportsDashboard" class="service-view report-service" data-view="reports" hidden>
+            <div class="service-heading">
+                <div><span class="eyebrow">ÉTAPE 04</span><h2>Du rapport Word aux slides</h2><p>Extrayez les informations clés, construisez le plan et préparez votre présentation.</p></div>
+                <span class="service-state">DOCX only</span>
+            </div>
+
+            <section class="report-panel"><form id="upload"><div id="drop"><span class="file-icon">W</span><h2>Start with your Word report</h2><p>Drag &amp; drop a .docx file here, or choose a file.</p><label class="choose">Choose DOCX<input type="file" id="file" accept=".docx" required></label><p id="filename">No file selected</p></div><button id="extract" type="submit">Extract Report <span aria-hidden="true">→</span></button></form><p id="status" role="status" aria-live="polite"></p></section>
+            <div id="results" hidden>
+                <section class="report-panel"><span class="eyebrow">REPORT</span><h2 id="title"></h2><p id="summary"></p><div id="sections"></div></section>
+                <section class="report-panel"><h2>Document structure</h2><p>Blocks in Word document order. Table contents are shown within their cells.</p><ol id="blocks"></ol></section>
+                <section class="report-assets"><h2>Visual assets</h2><p>Original Word assets, copied byte for byte.</p><div id="gallery"></div></section>
+                <section class="report-panel"><h2>Normalized output</h2><div class="actions"><button id="presentation">Show Presentation Input</button><button id="raw">Show Raw Extraction JSON</button><a id="markdown">Download Markdown</a></div><pre id="json" hidden></pre><ul id="warnings"></ul></section>
+                <section class="report-panel presentation-start"><span class="eyebrow">NEXT STEP</span><h2>Presentation Assistant</h2><p>Let the Google ADK Presentation Agent select the useful report sections, Word tables and original visuals, then build and refine a presentation plan.</p><button id="prepare-presentation">Prepare Presentation <span aria-hidden="true">→</span></button></section>
+                <section id="presentation-workspace" class="report-panel" hidden>
+                    <span class="eyebrow">GOOGLE ADK PRESENTATION AGENT</span><h2>Build the presentation story</h2>
+                    <div id="presentation-context-summary" class="context-summary"></div>
+                    <div id="agent-working" class="working-card" hidden aria-live="polite"><div class="working-head"><span class="report-spinner" aria-hidden="true"></span><div><strong id="agent-working-title">Presentation Agent is working…</strong><p id="agent-working-detail">Analyzing the extracted report.</p></div></div><div id="agent-working-steps" class="working-steps"></div></div>
+                    <div id="setup-suggestion-note" class="suggestion-note" hidden><div><span class="eyebrow">AGENT SUGGESTION</span><strong>Recommended from your extracted report</strong></div><p>The agent proposed Audience, Objective, Slides and Duration. Edit any value before generating the presentation plan.</p><button id="refresh-setup" type="button" class="secondary-button">Suggest Again</button></div>
+                    <form id="presentation-form" class="preferences-grid">
+                        <label>Audience<input id="pref-audience" placeholder="Agent will suggest an audience" maxlength="200"></label>
+                        <label>Objective<input id="pref-objective" placeholder="Agent will suggest an objective" maxlength="500"></label>
+                        <label>Language<input id="pref-language" value="English" maxlength="80"></label>
+                        <label>Duration (minutes)<input id="pref-duration" type="number" min="1" max="240" placeholder="Suggested by agent"></label>
+                        <label>Slides<input id="pref-slides" type="number" min="3" max="30" placeholder="Suggested by agent"></label>
+                        <label>Style<input id="pref-style" value="Professional" maxlength="120"></label>
+                        <label class="wide">Additional instructions<textarea id="pref-instructions" rows="3" maxlength="2000" placeholder="Example: Focus on sales and recommendations. Remove logistics."></textarea></label>
+                        <button id="generate-plan" class="wide" type="submit">Generate Presentation Plan</button>
+                    </form>
+                    <p id="presentation-status" role="status" aria-live="polite"></p>
+                    <div id="source-material" hidden><h3>Source material selected from the extractor</h3><p>Visuals are matched using explicit chart titles, captions and nearby Word paragraphs. The agent must keep Fact, Interpretation and Recommendation provenance separate.</p><div class="source-columns"><div><span class="badge">REPORT</span><div id="source-sections"></div></div><div><span class="badge">DATA</span><div id="source-tables"></div></div><div><span class="badge">VISUALS</span><div id="source-assets"></div></div></div></div>
+                    <div id="plan-result" hidden>
+                        <p id="agent-plan-message" class="agent-message"></p>
+                        <div class="plan-heading"><div><span class="eyebrow">PRESENTATION PLAN</span><h3 id="plan-title"></h3></div><span id="plan-count" class="badge"></span></div>
+                        <div class="provenance-legend"><span class="claim-badge claim-fact">Fact</span><span class="claim-badge claim-interpretation">Interpretation</span><span class="claim-badge claim-recommendation">Recommendation</span></div><div id="plan-slides" class="plan-slides"></div>
+                        <section id="interactive-agent" class="interactive-agent"><div class="interactive-heading"><div><span class="eyebrow">INTERACTIVE PRESENTATION AGENT</span><h3>Refine the plan with the agent</h3></div><button id="clear-presentation-chat" type="button" class="secondary-button">Clear chat</button></div><p>Ask naturally: “reduce to 5 slides”, “focus more on Tunisia”, “combine slides 3 and 4”, “why did you choose image_003?”, or “make this for my professor”. Source facts stay protected.</p><div class="quick-prompts" aria-label="Example presentation requests"><button type="button" class="quick-prompt" data-message="Make the presentation more concise without losing the strongest evidence.">Make it concise</button><button type="button" class="quick-prompt" data-message="Strengthen the conclusion and recommendations using only source-grounded recommendations.">Stronger conclusion</button><button type="button" class="quick-prompt" data-message="Use more of the most relevant original visuals, but only when their Word context clearly matches the slide.">Use relevant visuals</button></div><div id="presentation-chat-log" class="chat-log" role="log" aria-live="polite"></div><form id="presentation-chat-form" class="chat-form"><label for="presentation-chat-input">Message the Presentation Agent</label><textarea id="presentation-chat-input" rows="3" maxlength="4000" placeholder="Example: Reduce this to 5 slides and focus more on Tunisia and recommendations." required></textarea><div class="chat-actions"><span id="presentation-chat-status" role="status" aria-live="polite"></span><button id="presentation-chat-send" type="submit">Send to Agent</button></div></form></section>
+                        <h3>Prompt for Presenton</h3><p>This prompt is generated from the latest validated plan. You can copy it or download it inside the final ZIP package.</p><textarea id="presenton-prompt" class="prompt-output" rows="16" readonly></textarea><div class="actions"><button id="copy-presenton-prompt" type="button">Copy Prompt</button></div>
+                        <section class="presenton-handoff"><div class="handoff-heading"><div><span class="eyebrow">FINAL RESULT</span><h3>Download presentation package</h3></div><span class="context-chip">ZIP package</span></div><p>Download the latest result as a ZIP. It contains the generated prompt, original Word report, validated presentation plan, and only the original images selected by the Presentation Agent. Nothing is sent automatically to an external service.</p><div id="download-package-files" class="handoff-summary"></div><button id="download-package" type="button" disabled>Download Result <span aria-hidden="true">↓</span></button><div id="download-package-loading" class="working-card presenton-working" hidden aria-live="polite"><div class="working-head"><span class="report-spinner" aria-hidden="true"></span><div><strong>Preparing your presentation package…</strong><p>Packaging the latest agent result and only the selected original source files.</p></div></div><div class="working-steps"><span>Validate latest plan</span><span>Generate prompt</span><span>Add report.docx</span><span>Add selected visuals</span><span>Create ZIP</span></div></div><p id="download-package-status" role="status" aria-live="polite"></p></section>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section id="dataFormulatorDashboard" class="service-view external-service-view" data-view="data-formulator" hidden>
+            <div class="embedded-service-shell">
+                <a id="dataFormulatorExternalLink" class="embedded-service-open" href="#" target="_blank" rel="noopener noreferrer">Open Data Formulator in a new tab <span aria-hidden="true">↗</span></a>
+                <iframe id="dataFormulatorFrame" class="embedded-service-frame" title="Data Formulator" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <section id="presentonDashboard" class="service-view external-service-view" data-view="presenton" hidden>
+            <div class="embedded-service-shell">
+                <a id="presentonExternalLink" class="embedded-service-open" href="#" target="_blank" rel="noopener noreferrer">Open Presenton in a new tab <span aria-hidden="true">↗</span></a>
+                <iframe id="presentonFrame" class="embedded-service-frame" title="Presenton AI" loading="lazy"></iframe>
+            </div>
+        </section>
+    </main>
+</div>
+
+<dialog id="geminiSettingsDialog" class="gemini-settings-dialog" aria-labelledby="geminiSettingsTitle">
+    <form id="geminiSettingsForm" method="dialog" class="gemini-settings-form">
+        <header class="gemini-settings-header">
+            <div>
+                <span class="eyebrow">LOCAL ADMINISTRATION</span>
+                <h2 id="geminiSettingsTitle">Workspace configuration</h2>
+                <p>Manage Gemini and safe import limits directly from InsightFlow.</p>
+            </div>
+            <button id="closeGeminiSettings" class="gemini-icon-button" type="button" aria-label="Close Gemini configuration" title="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+            </button>
+        </header>
+
+        <div class="gemini-settings-content">
+            <div id="geminiConfiguredKeys" class="gemini-configured-keys" aria-live="polite"></div>
+            <section id="geminiKeyEditor" class="gemini-key-editor" hidden aria-labelledby="geminiKeyEditorTitle">
+                <div><strong id="geminiKeyEditorTitle">Replace saved key</strong><span id="geminiKeyEditorDetail"></span></div>
+                <div class="gemini-key-editor-controls">
+                    <input id="replaceGeminiKeyInput" type="password" autocomplete="new-password" spellcheck="false" placeholder="Paste the replacement Gemini API key" aria-label="Replacement Gemini API key">
+                    <button id="cancelGeminiKeyReplacement" class="btn-secondary" type="button">Cancel</button>
+                    <button id="saveGeminiKeyReplacement" class="btn-primary" type="button">Replace key</button>
+                </div>
+            </section>
+            <p class="gemini-security-note">Keys stay on this local backend. InsightFlow never displays a saved key again.</p>
+
+            <section class="gemini-key-section" aria-labelledby="geminiKeyPoolTitle">
+                <div class="gemini-section-heading">
+                <div><h3 id="geminiKeyPoolTitle">API key pool</h3><p>Add one or more keys for rotation and resilience. Saving replaces the current pool.</p></div>
+                    <button id="addGeminiKey" class="btn-secondary compact" type="button">Add key</button>
+                </div>
+                <div id="geminiKeyRows" class="gemini-key-rows"></div>
+            </section>
+
+            <section class="gemini-advanced-section" aria-labelledby="geminiRuntimeTitle">
+                <div class="gemini-section-heading"><div><h3 id="geminiRuntimeTitle">Gemini runtime</h3><p>Choose the model and the cooldown used when a key needs a pause.</p></div></div>
+                <div class="gemini-settings-grid">
+                    <label>Gemini model<input id="geminiModelInput" name="gemini_model" type="text" spellcheck="false" autocomplete="off" placeholder="gemini-2.5-flash"></label>
+                    <label>Key cooldown (seconds)<input id="geminiCooldownInput" name="gemini_key_cooldown_seconds" type="number" min="1" max="3600" step="1"></label>
+                </div>
+            </section>
+
+            <section class="gemini-advanced-section gemini-import-limits" aria-labelledby="importLimitsTitle">
+                <div class="gemini-section-heading"><div><h3 id="importLimitsTitle">Import safety limits</h3><p>These administrator settings protect local storage and DOCX/ZIP processing.</p></div></div>
+                <div class="gemini-settings-grid gemini-settings-grid-3">
+                    <label>Dataset limit (MiB)<input id="maxFileSizeInput" name="max_file_size_mb" type="number" min="1" max="1024" step="1"></label>
+                    <label>DOCX limit (MiB)<input id="maxDocxSizeInput" name="max_docx_size_mb" type="number" min="1" max="1024" step="1"></label>
+                    <label>Expanded ZIP limit (MiB)<input id="maxUncompressedSizeInput" name="max_uncompressed_size_mb" type="number" min="1" max="4096" step="1"></label>
+                    <label>ZIP entry limit<input id="maxZipEntriesInput" name="max_zip_entries" type="number" min="1" max="100000" step="1"></label>
+                </div>
+            </section>
+
+            <div id="geminiSettingsFeedback" class="gemini-settings-feedback" role="status" aria-live="polite"></div>
+        </div>
+
+        <footer class="gemini-settings-actions">
+            <button id="testGeminiKeys" class="btn-secondary" type="button">Test keys</button>
+            <button id="saveGeminiSettings" class="btn-primary" type="submit">Save configuration</button>
+        </footer>
+    </form>
+</dialog>

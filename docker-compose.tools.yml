@@ -1,0 +1,23 @@
+services:
+  data-formulator:
+    image: ghcr.io/mohamedoueslati-2/data-formulator:latest
+    container_name: insightflow-data-formulator
+    ports:
+      - "5567:5567"
+    volumes:
+      - data_formulator_home:/home/appuser/.data_formulator
+    restart: unless-stopped
+
+  presenton:
+    image: ghcr.io/presenton/presenton:latest
+    container_name: insightflow-presenton
+    ports:
+      - "5001:80"
+      # Required by Presenton's "Sign in with ChatGPT / Codex" callback flow.
+      - "1455:1455"
+    volumes:
+      - ./presenton_data:/app_data
+    restart: unless-stopped
+
+volumes:
+  data_formulator_home:

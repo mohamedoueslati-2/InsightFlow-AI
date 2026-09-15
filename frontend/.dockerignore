@@ -1,0 +1,7 @@
+node_modules
+dist
+*.tsbuildinfo
+.pytest_cache
+.env
+.env.*
+npm-debug.log*

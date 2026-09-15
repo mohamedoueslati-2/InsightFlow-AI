@@ -1,0 +1,17 @@
+.git
+.github
+.vscode
+.idea
+**/__pycache__
+**/*.py[cod]
+**/.pytest_cache
+**/.mypy_cache
+backend/venv
+backend/.env
+backend/storage
+storage
+frontend/node_modules
+frontend/dist
+frontend/*.tsbuildinfo
+presenton_data
+*.log

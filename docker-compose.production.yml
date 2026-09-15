@@ -1,0 +1,126 @@
+# Internet-facing deployment. This file intentionally publishes only Caddy;
+# all application containers stay on the private Compose network.
+#
+# Required environment variables are documented in production.env.example.
+name: insightflow
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: insightflow-api:latest
+    environment:
+      INSIGHTFLOW_SETTINGS_FILE: /app/config/insightflow.env
+      INSIGHTFLOW_ALLOWED_ORIGINS: https://${APP_DOMAIN:?Set APP_DOMAIN before starting production}
+      CLEANING_SANDBOX_BACKEND: docker
+      CLEANING_SANDBOX_IMAGE: cleaning-sandbox:1
+      CLEANING_SANDBOX_MEMORY_MB: ${CLEANING_SANDBOX_MEMORY_MB:-512}
+      CLEANING_SANDBOX_CPU_LIMIT: ${CLEANING_SANDBOX_CPU_LIMIT:-1}
+    volumes:
+      - insightflow_storage:/app/storage
+      - insightflow_report_storage:/app/backend/storage
+      - insightflow_settings:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      cleaning-sandbox:
+        condition: service_started
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=256m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/gemini', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: insightflow-frontend:latest
+    environment:
+      API_BASE_URL: https://${API_DOMAIN:?Set API_DOMAIN before starting production}
+      DATA_FORMULATOR_URL: https://${DATA_FORMULATOR_DOMAIN:?Set DATA_FORMULATOR_DOMAIN before starting production}
+      PRESENTON_URL: https://${PRESENTON_DOMAIN:?Set PRESENTON_DOMAIN before starting production}
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  cleaning-sandbox:
+    build:
+      context: ./backend/services/cleaning/executors
+      dockerfile: Dockerfile
+    image: cleaning-sandbox:1
+    entrypoint: ["/bin/sh", "-c", "tail -f /dev/null"]
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  data-formulator:
+    image: ghcr.io/mohamedoueslati-2/data-formulator:latest
+    volumes:
+      - data_formulator_home:/home/appuser/.data_formulator
+    restart: unless-stopped
+
+  presenton:
+    image: ghcr.io/presenton/presenton:latest
+    # Presenton's ChatGPT / Codex sign-in flow uses this callback listener.
+    # Restrict this port at the host firewall to the intended users when needed.
+    ports:
+      - "${PRESENTON_CODEX_AUTH_PORT:-1455}:1455"
+    volumes:
+      - presenton_data:/app_data
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2.10-alpine
+    depends_on:
+      - frontend
+      - api
+      - data-formulator
+      - presenton
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN:?Set APP_DOMAIN before starting production}
+      API_DOMAIN: ${API_DOMAIN:?Set API_DOMAIN before starting production}
+      DATA_FORMULATOR_DOMAIN: ${DATA_FORMULATOR_DOMAIN:?Set DATA_FORMULATOR_DOMAIN before starting production}
+      PRESENTON_DOMAIN: ${PRESENTON_DOMAIN:?Set PRESENTON_DOMAIN before starting production}
+      CADDY_EMAIL: ${CADDY_EMAIL:?Set CADDY_EMAIL before starting production}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  insightflow_storage:
+  insightflow_report_storage:
+  insightflow_settings:
+  data_formulator_home:
+  presenton_data:
+  caddy_data:
+  caddy_config:
