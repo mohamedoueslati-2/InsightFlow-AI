@@ -291,7 +291,7 @@ def list_files() -> List[Dict[str, Any]]:
     Retourne la liste de tous les fichiers téléversés et de leurs DataFrames et Profils associés.
     """
     file_list = []
-    
+
     for fmt in FORMAT_TYPES:
         upload_dir = UPLOADS_DIR / fmt
         df_dir = DATAFRAMES_DIR / fmt
@@ -304,7 +304,7 @@ def list_files() -> List[Dict[str, Any]]:
             if file_path.is_file():
                 filename = file_path.name
                 stem = file_path.stem
-                
+
                 pkl_path = df_dir / f"{stem}_dataframe.pkl"
                 csv_path = df_dir / f"{stem}_dataframe.csv"
                 profile_path = prof_dir / f"{stem}_profile.json"
@@ -365,7 +365,7 @@ def read_stored_file(file_type: str, stem: str) -> Dict[str, Any]:
     all_data = df.where(pd.notnull(df), "").to_dict(orient="records")
 
     relative_dataframe_pkl = str(pkl_path.relative_to(BASE_DIR)).replace("\\", "/") if pkl_path.exists() else ""
-    
+
     # Trouver le fichier original s'il existe
     upload_dir = UPLOADS_DIR / file_type
     original_files = list(upload_dir.glob(f"{stem}.*"))
