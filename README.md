@@ -1,30 +1,45 @@
 # InsightFlow AI
 
-[![FastAPI](https://img.shields.io/badge/FastAPI-3.0-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=111827)](https://react.dev/)
-[![Google ADK](https://img.shields.io/badge/Google%20ADK-Gemini-4285F4?logo=google&logoColor=white)](https://google.github.io/adk-docs/)
-[![Docker](https://img.shields.io/badge/Sandbox-Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+<p align="center">
+  <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-3.0-009688?logo=fastapi&logoColor=white" alt="FastAPI"></a>
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=111827" alt="React"></a>
+  <a href="https://google.github.io/adk-docs/"><img src="https://img.shields.io/badge/Google%20ADK-Gemini-4285F4?logo=google&logoColor=white" alt="Google ADK and Gemini"></a>
+  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Sandbox-Docker-2496ED?logo=docker&logoColor=white" alt="Docker"></a>
+</p>
 
-> A local AI workspace that takes data from **technical validation** to **human-reviewed cleaning**, and turns Word reports into **source-grounded presentation packages**.
+> A local-first AI workspace for validating, profiling, and safely cleaning datasets, then turning Word reports into human-reviewed presentation plans.
 
-InsightFlow AI is a full-stack data-quality and reporting workspace. It brings together secure dataset ingestion, deterministic profiling, Google ADK/Gemini agents, guarded generated-code execution, a review workflow, and a DOCX-to-presentation planning experience—without turning external tools into hidden automation.
+InsightFlow AI combines a React workspace with a FastAPI backend, deterministic data tools, Google ADK/Gemini agents, isolated Docker execution, and a review-first workflow. Data Formulator and Presenton are available as independent tools; InsightFlow does not transfer files to them automatically.
 
-```mermaid
-flowchart LR
-    U[User] --> UI[React + Vite admin workspace]
-    UI --> API[FastAPI composition root]
-    API --> DATA[Dataset workflow]
-    API --> REPORT[Word → Slides workflow]
-    API --> TOOLS[Embedded Docker tools]
+<p align="center">
+  <img src="docs/assets/architecture-insightflow.png" alt="InsightFlow AI architecture: browser, React frontend, FastAPI backend, data workflow, storage, Data Formulator, Presenton, and human review" width="100%">
+</p>
 
-    DATA --> V[Technical validation]
-    DATA --> P[Profiling agent]
-    DATA --> C[Cleaning agent + review]
-    REPORT --> X[Deterministic DOCX extraction]
-    REPORT --> A[Presentation agent]
-    TOOLS --> DF[Data Formulator]
-    TOOLS --> PR[Presenton]
-```
+<p align="center"><em>High-level architecture of the InsightFlow AI platform and its independent Docker tools.</em></p>
+
+## At a glance
+
+| Area | What it does |
+| --- | --- |
+| **Dataset workflow** | Validates CSV, Excel, and JSON files, profiles data, and proposes reviewable cleaning operations. |
+| **AI with safeguards** | Uses agents for analysis and planning; validates generated cleaning code and runs it in an isolated, no-network Docker sandbox. |
+| **Word → Slides** | Extracts content and original assets from DOCX files, then prepares a source-grounded presentation plan and ZIP handoff. |
+| **External tools** | Provides user-controlled Data Formulator and Presenton workspaces as separate Docker services. |
+
+## Contents
+
+- [Why InsightFlow AI?](#why-insightflow-ai)
+- [Product capabilities](#product-capabilities)
+- [Architecture](#architecture)
+- [Agent architecture](#agent-architecture)
+- [Security model](#security-model)
+- [Technology stack](#technology-stack)
+- [Quick start for Windows](#quick-start-for-windows)
+- [Docker deployment](#production-docker-compose)
+- [API routes](#key-api-routes)
+- [Storage and traceability](#storage-and-traceability)
+- [Testing](#testing)
+- [Further documentation](#further-documentation)
 
 ## Why InsightFlow AI?
 
@@ -109,7 +124,10 @@ InsightFlow-AI-SHADCN-ADMIN/
 │   ├── src/                            # React shell, visual system, legacy DOM contract
 │   ├── public/legacy/                  # Preserved legacy runtime scripts
 │   └── package.json                    # React, Vite, Tailwind, TypeScript
-├── docs/                               # Integration and lifecycle documentation
+├── docs/
+│   ├── assets/
+│   │   └── architecture-insightflow.png # README architecture diagram
+│   └── *.md                             # Integration and lifecycle documentation
 ├── docker-compose.tools.yml            # Data Formulator + Presenton services
 ├── run.py                              # Production-like local launcher
 ├── run.bat                             # Windows launcher: build + start
@@ -183,7 +201,7 @@ The report extractor reads OOXML ZIP members directly rather than extracting arb
 | Isolation | Docker with an unprivileged, no-network sandbox |
 | External tools | Data Formulator and Presenton, each independently containerized |
 
-## Quick start (Windows)
+## Quick start for Windows
 
 ### 1. Prerequisites
 
