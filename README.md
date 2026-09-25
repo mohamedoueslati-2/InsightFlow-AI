@@ -12,7 +12,7 @@
 InsightFlow AI combines a React workspace with a FastAPI backend, deterministic data tools, Google ADK/Gemini agents, isolated Docker execution, and a review-first workflow. Data Formulator and Presenton are available as independent tools; InsightFlow does not transfer files to them automatically.
 
 <p align="center">
-  <img src="docs/assets/architecture-insightflow.png" alt="InsightFlow AI architecture: browser, React frontend, FastAPI backend, data workflow, storage, Data Formulator, Presenton, and human review" width="100%">
+  <img src="docs/assets/insightflow-system-architecture.png" alt="InsightFlow AI architecture: browser, React frontend, FastAPI backend, data workflow, storage, Data Formulator, Presenton, and human review" width="100%">
 </p>
 
 <p align="center"><em>High-level architecture of the InsightFlow AI platform and its independent Docker tools.</em></p>
@@ -126,7 +126,7 @@ InsightFlow-AI-SHADCN-ADMIN/
 │   └── package.json                    # React, Vite, Tailwind, TypeScript
 ├── docs/
 │   ├── assets/
-│   │   └── architecture-insightflow.png # README architecture diagram
+│   │   └── insightflow-system-architecture.png # README architecture diagram
 │   └── *.md                             # Integration and lifecycle documentation
 ├── docker-compose.tools.yml            # Data Formulator + Presenton services
 ├── run.py                              # Production-like local launcher
